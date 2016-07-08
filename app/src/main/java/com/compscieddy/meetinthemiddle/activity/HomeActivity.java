@@ -261,8 +261,24 @@ public class HomeActivity extends BaseActivity implements OnMapReadyCallback, Lo
       }
     };
     registerReceiver(networkChangeReceiver, intentFilter);
+    final Animation anim = AnimationUtils.loadAnimation(this, R.anim.jiggle);
+    anim.setAnimationListener(new Animation.AnimationListener() {
+      @Override
+      public void onAnimationStart(Animation animation) {
 
-    mNewGroupButton.startAnimation(AnimationUtils.loadAnimation(this, R.anim.jiggle));
+      }
+
+      @Override
+      public void onAnimationEnd(Animation animation) {
+
+      }
+
+      @Override
+      public void onAnimationRepeat(Animation animation) {
+        anim.setStartOffset(500);
+      }
+    });
+    mNewGroupButton.startAnimation(anim);
   }
 
   private void initLocationPermissionGranted() {
